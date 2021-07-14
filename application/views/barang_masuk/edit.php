@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                            Form Input Barang Masuk
+                            Form Edit Barang Masuk
                         </h4>
                     </div>
                     <div class="col-auto">
@@ -22,18 +22,18 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open('', [], ['id_barang_masuk' => $id_barang_masuk, 'user_id' => $this->session->userdata('login_session')['user']]); ?>
+                <?= form_open('', [], ['id_barang_masuk' => $barang_masuk['id_barang_masuk'], 'user_id' => $this->session->userdata('login_session')['user']]); ?>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="id_barang_masuk">ID Transaksi Barang Masuk</label>
                     <div class="col-md-4">
-                        <input value="<?= $id_barang_masuk; ?>" type="text" readonly="readonly" class="form-control">
+                        <input value="<?= $barang_masuk['id_barang_masuk']; ?>" type="text" readonly="readonly" class="form-control">
                         <?= form_error('id_barang_masuk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="tanggal_masuk">Tanggal Masuk</label>
                     <div class="col-md-4">
-                        <input value="<?= set_value('tanggal_masuk', date('Y-m-d')); ?>" name="tanggal_masuk" id="tanggal_masuk" type="text" class="form-control date" placeholder="Tanggal Masuk...">
+                        <input value="<?= $barang_masuk['tanggal_masuk']; ?>" name="tanggal_masuk" id="tanggal_masuk" type="text" class="form-control date" placeholder="Tanggal Masuk...">
                         <?= form_error('tanggal_masuk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <select name="supplier_id" id="supplier_id" class="custom-select">
                                 <option value="" selected disabled>Pilih Supplier</option>
                                 <?php foreach ($supplier as $s) : ?>
-                                    <option <?= set_select('supplier_id', $s['id_supplier']) ?> value="<?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
+                                    <option <?php if($s['id_supplier'] == $barang_masuk['supplier_id']){ echo 'selected="selected"'; } ?> value="<?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="input-group-append">
@@ -72,27 +72,15 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="stok">Stok</label>
-                    <div class="col-md-5">
-                        <input readonly="readonly" id="stok" type="number" class="form-control">
-                    </div>
-                </div>
-                <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="jumlah_masuk">Jumlah Masuk</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input value="<?= set_value('jumlah_masuk'); ?>" name="jumlah_masuk" id="jumlah_masuk" type="number" class="form-control" placeholder="Jumlah Masuk...">
+                            <input value="<?= $barang_masuk['jumlah_masuk']; ?>" name="jumlah_masuk" id="jumlah_masuk" type="number" class="form-control" placeholder="Jumlah Masuk...">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="satuan">Satuan</span>
                             </div>
                         </div>
                         <?= form_error('jumlah_masuk', '<small class="text-danger">', '</small>'); ?>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="total_stok">Total Stok</label>
-                    <div class="col-md-5">
-                        <input readonly="readonly" id="total_stok" type="number" class="form-control">
                     </div>
                 </div>
 

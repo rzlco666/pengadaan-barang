@@ -87,7 +87,7 @@
                     <label class="col-md-4 text-md-right" for="nama_pembeli">Alamat Pembeli</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <textarea name="alamat_pembeli" id="alamat_pembeli" class="form-control">Alamat Pembeli</textarea>
+                            <textarea name="alamat_pembeli" id="alamat_pembeli" class="form-control" placeholder="Alamat Pembeli"></textarea>
                             <div class="input-group-append">
                             </div>
                         </div>

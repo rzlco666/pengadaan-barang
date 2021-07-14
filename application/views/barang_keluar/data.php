@@ -28,9 +28,10 @@
                     <th>Tanggal Keluar</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Keluar</th>
+                    <th>Total Harga</th>
                     <th>Nama Pembeli</th>
                     <th>Alamat Pembeli</th>
-                    <th>Hapus</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,10 +46,13 @@
                             <td><?= $bk['tanggal_keluar']; ?></td>
                             <td><?= $bk['nama_barang']; ?></td>
                             <td><?= $bk['jumlah_keluar'] . ' ' . $bk['nama_satuan']; ?></td>
+                            <td><?php foreach ($barang as $b) : ?>
+                                <?php if($b['id_barang'] == $bk['barang_id']){ echo "Rp " . number_format($bk['jumlah_keluar']*$b['harga'], 0, ".", "."); } ?>
+                            <?php endforeach; ?></td>
                             <td><?= $bk['nama_pembeli']; ?></td>
                             <td><?= $bk['alamat_pembeli']; ?></td>
                             <td>
-                                 <a href="<?= base_url('barangkeluar/edit/')  ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                                 <a href="<?= base_url('barangkeluar/edit/'). $bk['id_barang_keluar']  ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
                                 <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('barangkeluar/delete/') . $bk['id_barang_keluar'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>

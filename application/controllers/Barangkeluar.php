@@ -15,6 +15,7 @@ class Barangkeluar extends CI_Controller
     public function index()
     {
         $data['title'] = "Barang keluar";
+        $data['barang'] = $this->admin->get('barang');
         $data['barangkeluar'] = $this->admin->getBarangkeluar();
         $this->template->load('templates/dashboard', 'barang_keluar/data', $data);
     }
@@ -72,27 +73,21 @@ class Barangkeluar extends CI_Controller
             }
         }
     }
-    public function edit()
-    {
     
+    public function edit($getId)
+    {
+        $id = $getId;
         $this->_validasi();
+
         if ($this->form_validation->run() == false) {
             $data['title'] = "Barang Keluar";
+            $data['barang_keluar'] = $this->admin->get('barang_keluar', ['id_barang_keluar' => $id]);
             $data['barang'] = $this->admin->get('barang', null, ['stok >' => 0]);
-            
-
-            // Mendapatkan dan men-generate kode transaksi barang keluar
-            $kode = 'T-BK-' . date('ymd');
-            $kode_terakhir = $this->admin->getMax('barang_keluar', 'id_barang_keluar', $kode);
-            $kode_tambah = substr($kode_terakhir, -5, 5);
-            $kode_tambah++;
-            $number = str_pad($kode_tambah, 5, '0', STR_PAD_LEFT);
-            $data['id_barang_keluar'] = $kode . $number;
 
             $this->template->load('templates/dashboard', 'barang_keluar/edit', $data);
         } else {
             $input = $this->input->post(null, true);
-            $update = $this->admin->update('barang_keluar',$id, $input);
+            $update = $this->admin->update('barang_keluar', 'id_barang_keluar', $id, $input);
 
 
             if ($update) {

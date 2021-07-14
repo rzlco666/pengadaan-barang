@@ -22,11 +22,11 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open('', [], ['id_barang_keluar' => $id_barang_keluar, 'user_id' => $this->session->userdata('login_session')['user']]); ?>
+                <?= form_open('', [], ['id_barang_keluar' => $barang_keluar['id_barang_keluar'], 'user_id' => $this->session->userdata('login_session')['user']]); ?>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="id_barang_keluar">ID Transaksi Barang Keluar</label>
                     <div class="col-md-4">
-                        <input value="<?= $id_barang_keluar; ?>" type="text" readonly="readonly" class="form-control">
+                        <input value="<?= $barang_keluar['id_barang_keluar']; ?>" type="text" readonly="readonly" class="form-control">
                         <?= form_error('id_barang_keluar', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <label class="col-md-4 text-md-right" for="jumlah_keluar">Jumlah Keluar</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input value="<?= set_value('jumlah_keluar'); ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar...">
+                            <input value="<?= $barang_keluar['jumlah_keluar']; ?>" name="jumlah_keluar" id="jumlah_keluar" type="number" class="form-control" placeholder="Jumlah Keluar...">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="satuan">Satuan</span>
                             </div>
@@ -74,7 +74,7 @@
                     <label class="col-md-4 text-md-right" for="nama_pembeli">Nama Pembeli</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input name="nama_pembeli" id="nama_pembeli" type="text" class="form-control" placeholder="Nama Pembeli">
+                            <input value="<?= $barang_keluar['nama_pembeli']; ?>" name="nama_pembeli" id="nama_pembeli" type="text" class="form-control" placeholder="Nama Pembeli">
                             <div class="input-group-append">
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                     <label class="col-md-4 text-md-right" for="nama_pembeli">Alamat Pembeli</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <textarea name="alamat_pembeli" id="alamat_pembeli" class="form-control">Alamat Pembeli</textarea>
+                            <textarea name="alamat_pembeli" id="alamat_pembeli" class="form-control"><?= $barang_keluar['alamat_pembeli']; ?></textarea>
                             <div class="input-group-append">
                             </div>
                         </div>

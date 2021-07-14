@@ -227,7 +227,7 @@
             <footer class="sticky-footer bg-light">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Aplikasi Pengadaan Barang 2019 &bull; by <?= anchor('https://www.ahmad.id', 'Ahmad Febry'); ?></span>
+                        <span>Copyright &copy; Aplikasi Pengadaan Barang 2021 &bull; by <?= anchor('https://www.google.com', 'Fauzi'); ?></span>
                     </div>
                 </div>
             </footer>

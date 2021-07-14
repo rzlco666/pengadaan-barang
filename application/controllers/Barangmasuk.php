@@ -58,6 +58,33 @@ class Barangmasuk extends CI_Controller
         }
     }
 
+    public function edit($getId)
+    {
+        $id = $getId;
+        $this->_validasi();
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Barang Masuk";
+            $data['barang_masuk'] = $this->admin->get('barang_masuk', ['id_barang_masuk' => $id]);
+            $data['supplier'] = $this->admin->get('supplier');
+            $data['barang'] = $this->admin->get('barang');
+
+            $this->template->load('templates/dashboard', 'barang_masuk/edit', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $update = $this->admin->update('barang_masuk', 'id_barang_masuk', $id, $input);
+
+
+            if ($update) {
+                set_pesan('data berhasil disimpan.');
+                redirect('barangmasuk');
+            } else {
+                set_pesan('Opps ada kesalahan!');
+                redirect('barangmasuk/edit');
+            }
+        }
+    }
+
     public function delete($getId)
     {
         $id = encode_php_tags($getId);

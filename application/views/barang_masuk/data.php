@@ -29,8 +29,7 @@
                     <th>Supplier</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Masukan</th>
-                    <th>Harga</th>
-                    <th>Hapus</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,8 +45,8 @@
                             <td><?= $bm['nama_supplier']; ?></td>
                             <td><?= $bm['nama_barang']; ?></td>
                             <td><?= $bm['jumlah_masuk'] . ' ' . $bm['nama_satuan']; ?></td>
-                            <td><?= $bm['Harga']; ?></td>
                             <td>
+                                <a href="<?= base_url('barangmasuk/edit/'). $bm['id_barang_masuk']  ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
                                 <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('barangmasuk/delete/') . $bm['id_barang_masuk'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
