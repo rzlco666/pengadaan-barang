@@ -52,8 +52,9 @@
                             <td><?= $bk['nama_pembeli']; ?></td>
                             <td><?= $bk['alamat_pembeli']; ?></td>
                             <td>
-                                 <a href="<?= base_url('barangkeluar/edit/'). $bk['id_barang_keluar']  ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                                <a href="<?= base_url('barangkeluar/edit/'). $bk['id_barang_keluar']  ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
                                 <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('barangkeluar/delete/') . $bk['id_barang_keluar'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
+                                <a target="_blank" href="<?= base_url('barangkeluar/invoice/'). $bk['id_barang_keluar']  ?>" class="btn btn-success btn-circle btn-sm"><i class="fa fa-print"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

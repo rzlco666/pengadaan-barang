@@ -111,4 +111,14 @@ class Barangkeluar extends CI_Controller
         }
         redirect('barangkeluar');
     }
+
+    public function invoice($getId)
+    {
+        $id = $getId;
+        $data['title'] = "Invoice";
+        $data['barang_keluar'] = $this->admin->get('barang_keluar', ['id_barang_keluar' => $id]);
+        $data['barang'] = $this->admin->get('barang', null, ['stok >' => 0]);
+
+        $this->load->view('barang_keluar/invoice', $data);
+    }
 }
