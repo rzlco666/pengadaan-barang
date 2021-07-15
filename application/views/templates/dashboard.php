@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><?= $title; ?> | Aplikasi Pengadaan Barang</title>
+    <title><?= $title; ?> | Aplikasi Barokah Mebel</title>
     
     <!-- Favicon -->
         <link rel="icon" href="<?= base_url('assets/'); ?>img/favicon.png" type="image/x-icon" />
@@ -49,7 +49,7 @@
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-university"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Pengadaan Barang</div>
+                <div class="sidebar-brand-text mx-3">Barokah Mebel</div>
             </a>
 
             <!-- Nav Item - Dashboard -->
@@ -72,7 +72,7 @@
             <li class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('supplier'); ?>">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Supplier</span>
+                    <span>Pekerja</span>
                 </a>
             </li>
 
@@ -230,7 +230,7 @@
             <footer class="sticky-footer bg-light">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Aplikasi Pengadaan Barang 2021 &bull; by <?= anchor('https://www.google.com', 'Fauzi'); ?></span>
+                        <span>Copyright &copy; Aplikasi Barokah Mebel 2021 &bull; by <?= anchor('https://www.google.com', 'Fauzi'); ?></span>
                     </div>
                 </div>
             </footer>

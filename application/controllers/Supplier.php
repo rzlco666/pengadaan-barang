@@ -14,14 +14,14 @@ class Supplier extends CI_Controller
 
     public function index()
     {
-        $data['title'] = "Supplier";
+        $data['title'] = "Pekerja";
         $data['supplier'] = $this->admin->get('supplier');
         $this->template->load('templates/dashboard', 'supplier/data', $data);
     }
 
     private function _validasi()
     {
-        $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'required|trim');
+        $this->form_validation->set_rules('nama_supplier', 'Nama Pekerja', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|trim|numeric');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
     }
@@ -30,7 +30,7 @@ class Supplier extends CI_Controller
     {
         $this->_validasi();
         if ($this->form_validation->run() == false) {
-            $data['title'] = "Supplier";
+            $data['title'] = "Pekerja";
             $this->template->load('templates/dashboard', 'supplier/add', $data);
         } else {
             $input = $this->input->post(null, true);
@@ -52,7 +52,7 @@ class Supplier extends CI_Controller
         $this->_validasi();
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = "Supplier";
+            $data['title'] = "Pekerja";
             $data['supplier'] = $this->admin->get('supplier', ['id_supplier' => $id]);
             $this->template->load('templates/dashboard', 'supplier/edit', $data);
         } else {

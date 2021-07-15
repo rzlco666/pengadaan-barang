@@ -26,7 +26,7 @@
                     <th>No. </th>
                     <th>No Transaksi</th>
                     <th>Tanggal Masuk</th>
-                    <th>Supplier</th>
+                    <th>Pekerja</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Masukan</th>
                     <th>Aksi</th>

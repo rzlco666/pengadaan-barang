@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                            Form Tambah Supplier
+                            Form Tambah Pekerja
                         </h4>
                     </div>
                     <div class="col-auto">
@@ -24,13 +24,13 @@
                 <?= $this->session->flashdata('pesan'); ?>
                 <?= form_open(); ?>
                 <div class="row form-group">
-                    <label class="col-md-3 text-md-right" for="nama_supplier">Nama Supplier</label>
+                    <label class="col-md-3 text-md-right" for="nama_supplier">Nama Pekerja</label>
                     <div class="col-md-9">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-user"></i></span>
                             </div>
-                            <input value="<?= set_value('nama_supplier'); ?>" name="nama_supplier" id="nama_supplier" type="text" class="form-control" placeholder="Nama Supplier...">
+                            <input value="<?= set_value('nama_supplier'); ?>" name="nama_supplier" id="nama_supplier" type="text" class="form-control" placeholder="Nama Pekerja...">
                         </div>
                         <?= form_error('nama_supplier', '<small class="text-danger">', '</small>'); ?>
                     </div>

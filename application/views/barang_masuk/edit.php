@@ -38,11 +38,11 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="supplier_id">Supplier</label>
+                    <label class="col-md-4 text-md-right" for="supplier_id">Pekerja</label>
                     <div class="col-md-5">
                         <div class="input-group">
                             <select name="supplier_id" id="supplier_id" class="custom-select">
-                                <option value="" selected disabled>Pilih Supplier</option>
+                                <option value="" selected disabled>Pilih Pekerja</option>
                                 <?php foreach ($supplier as $s) : ?>
                                     <option <?php if($s['id_supplier'] == $barang_masuk['supplier_id']){ echo 'selected="selected"'; } ?> value="<?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
                                 <?php endforeach; ?>

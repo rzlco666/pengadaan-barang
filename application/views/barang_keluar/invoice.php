@@ -125,7 +125,7 @@
 						<table>
 							<tr>
 								<td class="title">
-									<img src="<?= base_url('assets/'); ?>img/logo-invoice.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+									<img src="<?= base_url('assets/'); ?>img/logo-barokah.png" alt="Company logo" style="width: 100%; max-width: 300px" />
 								</td>
 
 								<td>

@@ -43,6 +43,7 @@ class Laporan extends CI_Controller
     {
         $this->load->library('CustomPDF');
         $table = $table_ == 'barang_masuk' ? 'Barang Masuk' : 'Barang Keluar';
+        $barang = $this->admin->get('barang');
 
         $pdf = new FPDF();
         $pdf->AddPage('P', 'Letter');
@@ -59,9 +60,8 @@ class Laporan extends CI_Controller
             $pdf->Cell(25, 7, 'Tgl Masuk', 1, 0, 'C');
             $pdf->Cell(35, 7, 'ID Transaksi', 1, 0, 'C');
             $pdf->Cell(55, 7, 'Nama Barang', 1, 0, 'C');
-            $pdf->Cell(40, 7, 'Supplier', 1, 0, 'C');
+            $pdf->Cell(40, 7, 'Pekerja', 1, 0, 'C');
             $pdf->Cell(30, 7, 'Jumlah Masuk', 1, 0, 'C');
-            $pdf->Cell(15, 7, 'Harga', 1, 0, 'C');
             $pdf->Ln();
 
             $no = 1;
@@ -73,14 +73,14 @@ class Laporan extends CI_Controller
                 $pdf->Cell(55, 7, $d['nama_barang'], 1, 0, 'L');
                 $pdf->Cell(40, 7, $d['nama_supplier'], 1, 0, 'L');
                 $pdf->Cell(30, 7, $d['jumlah_masuk'] . ' ' . $d['nama_satuan'], 1, 0, 'C');
-                $pdf->Cell(40, 7, $d['Harga'], 1, 0, 'L');
                 $pdf->Ln();
             } else :
             $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
             $pdf->Cell(25, 7, 'Tgl Keluar', 1, 0, 'C');
             $pdf->Cell(35, 7, 'ID Transaksi', 1, 0, 'C');
-            $pdf->Cell(95, 7, 'Nama Barang', 1, 0, 'C');
+            $pdf->Cell(60, 7, 'Nama Barang', 1, 0, 'C');
             $pdf->Cell(30, 7, 'Jumlah Keluar', 1, 0, 'C');
+            $pdf->Cell(35, 7, 'Total Keluar', 1, 0, 'C');
             $pdf->Ln();
 
             $no = 1;
@@ -89,13 +89,28 @@ class Laporan extends CI_Controller
                 $pdf->Cell(10, 7, $no++ . '.', 1, 0, 'C');
                 $pdf->Cell(25, 7, $d['tanggal_keluar'], 1, 0, 'C');
                 $pdf->Cell(35, 7, $d['id_barang_keluar'], 1, 0, 'C');
-                $pdf->Cell(95, 7, $d['nama_barang'], 1, 0, 'L');
+                $pdf->Cell(60, 7, $d['nama_barang'], 1, 0, 'L');
                 $pdf->Cell(30, 7, $d['jumlah_keluar'] . ' ' . $d['nama_satuan'], 1, 0, 'C');
+
+                foreach ($barang as $b) :
+                    if($b['id_barang'] == $d['barang_id']){
+                        //$pdf->Cell(35, 7, $d['jumlah_keluar']*$b['harga'], 1, 0, 'L');
+                        $pdf->Cell(35, 7, "Rp " . number_format($d['jumlah_keluar']*$b['harga'], 0, ".", "."), 1, 0, 'L');
+                        
+                    }
+                    //$jumlah = 0;
+                    //$isi = $d['jumlah_keluar']*$b['harga'];
+                    //$jl = array($isi);
+                    //$jumlah =+ array_sum($jl);
+                endforeach;
+
                 $pdf->Ln();
             }
+            //$pdf->Cell(160, 7, 'Jumlah Total Keluar :', 1, 0, 'C');
+            //$pdf->Cell(35, 7, $jumlah, 1, 0, 'C');
         endif;
 
         $file_name = $table . ' ' . $tanggal;
-        $pdf->Output('I', $file_name);
+        $pdf->Output($file_name, 'I');
     }
 }
