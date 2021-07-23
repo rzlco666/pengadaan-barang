@@ -35,22 +35,32 @@ class Laporan extends CI_Controller
                 $query = $this->admin->getBarangKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             }
 
-            $this->_cetak($query, $table, $tanggal);
+            $this->_cetak($query, $table, $tanggal, $mulai, $akhir);
         }
     }
 
-    public function _cetak($data, $table_, $tanggal)
+    public function _cetak($data, $table_, $tanggal, $mulai, $akhir)
     {
         $this->load->library('CustomPDF');
         $table = $table_ == 'barang_masuk' ? 'Barang Masuk' : 'Barang Keluar';
         $barang = $this->admin->get('barang');
 
+        $jml = $this->templates->query("SELECT SUM(harga*jumlah_keluar) jumlah FROM barang_keluar JOIN barang ON barang_keluar.barang_id = barang.id_barang WHERE tanggal_keluar BETWEEN '$mulai' AND '$akhir'")->result();
+
         $pdf = new FPDF();
         $pdf->AddPage('P', 'Letter');
         $pdf->SetFont('Times', 'B', 16);
         $pdf->Cell(190, 7, 'Laporan ' . $table, 0, 1, 'C');
+        $pdf->SetFont('Times', 'B', 12);
+        $pdf->Ln(1);
+        $pdf->Cell(190, 4, 'BAROKAH MEBEL', 0, 1, 'C');
+        $pdf->Ln(1);
         $pdf->SetFont('Times', '', 10);
-        $pdf->Cell(190, 4, 'Tanggal : ' . $tanggal, 0, 1, 'C');
+        $pdf->Cell(190, 4, 'Jalan Profesor Soeharso No 8 Winong, Dusun 2, Kiringan, Boyolali', 0, 1, 'C');
+        $pdf->Cell(190, 4, '(0276) 321717 / 081215363607', 0, 1, 'C');
+        $pdf->Ln(1);
+        $pdf->SetFont('Times', '', 10);
+        $pdf->Cell(190, 4, 'Tanggal : ' . $mulai. ' - '.$akhir, 0, 1, 'C');
         $pdf->Ln(10);
 
         $pdf->SetFont('Arial', 'B', 10);
@@ -74,7 +84,15 @@ class Laporan extends CI_Controller
                 $pdf->Cell(40, 7, $d['nama_supplier'], 1, 0, 'L');
                 $pdf->Cell(30, 7, $d['jumlah_masuk'] . ' ' . $d['nama_satuan'], 1, 0, 'C');
                 $pdf->Ln();
-            } else :
+            } 
+
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Cell(195, 7, 'Hafidh Arifianto', 0, 1, 'R');
+
+            else :
             $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
             $pdf->Cell(25, 7, 'Tgl Keluar', 1, 0, 'C');
             $pdf->Cell(35, 7, 'ID Transaksi', 1, 0, 'C');
@@ -106,8 +124,17 @@ class Laporan extends CI_Controller
 
                 $pdf->Ln();
             }
-            //$pdf->Cell(160, 7, 'Jumlah Total Keluar :', 1, 0, 'C');
-            //$pdf->Cell(35, 7, $jumlah, 1, 0, 'C');
+            $pdf->Cell(160, 7, 'Jumlah Total Keluar :', 1, 0, 'C');
+            foreach ($jml as $jml) {
+                $pdf->Cell(35, 7, "Rp " . number_format($jml->jumlah, 0, ".", "."), 1, 0, 'C');
+            }
+
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Cell(195, 7, 'Hafidh Arifianto', 0, 1, 'R');
+
         endif;
 
         $file_name = $table . ' ' . $tanggal;

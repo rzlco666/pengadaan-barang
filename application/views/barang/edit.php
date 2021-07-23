@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open('', [], ['stok' => 0, 'id_barang' => $barang['id_barang']]); ?>
+                <?= form_open('', [], ['id_barang' => $barang['id_barang']]); ?>
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="nama_barang">Nama Barang</label>
                     <div class="col-md-9">
