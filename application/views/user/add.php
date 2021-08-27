@@ -62,7 +62,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="no_telp">Nomor Telepon</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('no_telp'); ?>" type="text" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon">
+                        <input value="<?= set_value('no_telp'); ?>" type="tel" pattern="[0-9]{12}" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon">
                         <?= form_error('no_telp', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>

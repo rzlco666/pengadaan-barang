@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jul 2021 pada 09.39
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 8.0.5
+-- Waktu pembuatan: 21 Agu 2021 pada 13.06
+-- Versi server: 10.1.38-MariaDB
+-- Versi PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -41,13 +42,18 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `stok`, `satuan_id`, `jenis_id`, `harga`) VALUES
-('B000002', 'Samsung Galaxy J1 Ace', 10, 1, 4, 2500000),
-('B000003', 'Aqua 1,5 Liter', 495, 3, 2, 9000),
-('B000004', 'Mouse Wireless Logitech M220', 80, 1, 7, 200000),
-('B000005', 'Beras 1 Kilogram', 8, 4, 8, 13000),
-('B000006', 'Rokok Sampoerna Mild', 85, 5, 9, 20000),
-('B000007', 'Rokok Marlboro Merah', 18, 5, 9, 25000),
-('B000008', 'Frisian Flag Kaleng 370gr', 495, 6, 8, 15000);
+('B000002', 'Almari penyimpanan 2,3 X 2 m', 3, 1, 4, 5500000),
+('B000004', 'Set Kursi L 4', 2, 2, 11, 4500000),
+('B000005', 'Sekat Ruangan 2,3 x 2 m', 1, 1, 8, 2300000),
+('B000006', 'Kursi lipat tangga', 5, 1, 1, 750000),
+('B000007', 'Mimbar masjid tertutup uk', 0, 1, 9, 2500000),
+('B000008', 'Meja makan lingkaran 4 kursi', 2, 2, 10, 8100000),
+('B000009', 'Kursi bulat sandaran', 1, 1, 1, 600000),
+('B000010', 'Almari penyimpanan 8 rak', 0, 1, 4, 1800000),
+('B000011', 'Almari penyimpanan bifet TV', 0, 1, 4, 1900000),
+('B000012', 'Dipan 1,8x2m', 0, 1, 7, 3800000),
+('B000013', 'Dipan 2x2m', 1, 1, 7, 5100000),
+('B000014', 'Kursi 2', 0, 1, 1, 350000);
 
 -- --------------------------------------------------------
 
@@ -62,23 +68,27 @@ CREATE TABLE `barang_keluar` (
   `jumlah_keluar` int(11) NOT NULL,
   `tanggal_keluar` date NOT NULL,
   `nama_pembeli` varchar(250) NOT NULL,
-  `alamat_pembeli` varchar(250) NOT NULL
+  `alamat_pembeli` varchar(250) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `barang_keluar`
 --
 
-INSERT INTO `barang_keluar` (`id_barang_keluar`, `user_id`, `barang_id`, `jumlah_keluar`, `tanggal_keluar`, `nama_pembeli`, `alamat_pembeli`) VALUES
-('T-BK-21070900006', 1, 'B000002', 2, '2021-07-09', 'D', 'Kebumen'),
-('T-BK-21070900007', 1, 'B000004', 150, '2021-07-09', 'Fauzi', 'Boyolali'),
-('T-BK-21071000001', 1, 'B000003', 33, '2021-07-10', 'E', 'Telkom'),
-('T-BK-21071100001', 1, 'B000002', 1, '2021-07-11', 'fyfu', 'Alamkjguoogoat Pembeli'),
-('T-BK-21071400001', 1, 'B000005', 2, '2021-07-14', 'Syamsul', 'Dayeuhkolot, Bandung - Jawa Barat'),
-('T-BK-21071400002', 1, 'B000006', 10, '2021-07-14', 'Andi Darussalam', 'Babakan Ciamis, Bandung - Jawa Barat'),
-('T-BK-21071400003', 1, 'B000007', 2, '2021-07-14', 'Banur Hermansyah', 'Citarum, Semarang - Jawa Tengah'),
-('T-BK-21071400004', 1, 'B000008', 10, '2021-07-14', 'Nurdiansyah', 'Grogol - Jakarta Selatan'),
-('T-BK-21071500001', 1, 'B000006', 15, '2021-07-15', 'Nirwansyah', 'Boyolali - Jawa Tengah');
+INSERT INTO `barang_keluar` (`id_barang_keluar`, `user_id`, `barang_id`, `jumlah_keluar`, `tanggal_keluar`, `nama_pembeli`, `alamat_pembeli`, `nama_barang`) VALUES
+('T-BK-21072200001', 1, 'B000004', 1, '2021-07-22', 'Fandi Ahmad', 'Sapiyan, Boyolali, Jawa Tengah', ''),
+('T-BK-21072200002', 1, 'B000006', 1, '2021-07-22', 'Triatmojo', 'Mojosongo, Boyolali', ''),
+('T-BK-21072200003', 1, 'B000006', 2, '2021-07-22', 'Budi Sudarsono', 'Perum.Galaxy Permai no.22', ''),
+('T-BK-21072200004', 1, 'B000009', 3, '2021-07-22', 'Sholeh Prihantara', 'Gombang, Sawit, Boyolali', ''),
+('T-BK-21072200005', 1, 'B000005', 3, '2021-07-23', 'Somat', 'Boyolali', ''),
+('T-BK-21072200006', 1, 'B000013', 2, '2021-07-22', 'Alpa', 'Boyolali', ''),
+('T-BK-21072300001', 1, 'B000005', 2, '2021-07-23', 'ali', 'boyolali', ''),
+('T-BK-21080900001', 1, 'B000007', 1, '2021-08-09', 'Budi S', 'Balikpapan', ''),
+('T-BK-21081000001', 1, 'B000007', 1, '2021-08-10', 'supeno', 'boyolali', ''),
+('T-BK-21081200001', 1, 'B000002', 1, '2021-08-12', 'gust', 'Kediri', ''),
+('T-BK-21081200002', 1, 'B000002', 2, '2021-08-12', 'agus', 'boyolali', ''),
+('T-BK-21081300001', 1, 'B000004', 2, '2021-08-13', 'Fauzi', 'boyolali', '');
 
 --
 -- Trigger `barang_keluar`
@@ -108,21 +118,16 @@ CREATE TABLE `barang_masuk` (
 --
 
 INSERT INTO `barang_masuk` (`id_barang_masuk`, `supplier_id`, `user_id`, `barang_id`, `jumlah_masuk`, `tanggal_masuk`) VALUES
-('T-BM-20122100001', 1, 1, 'B000002', 5, '2021-05-05'),
-('T-BM-20122100002', 1, 1, 'B000003', 2, '2021-05-05'),
-('T-BM-20122100003', 1, 1, 'B000002', 8, '2021-05-05'),
-('T-BM-20122100004', 2, 1, 'B000003', 12, '2021-05-05'),
-('T-BM-20122100005', 1, 1, 'B000004', 10, '2021-05-05'),
-('T-BM-20122100009', 1, 1, 'B000002', 2, '2021-05-05'),
-('T-BM-21070900001', 1, 1, 'B000002', 3, '2021-07-09'),
-('T-BM-21071100001', 2, 1, 'B000003', 2, '2021-05-05'),
-('T-BM-21071400001', 4, 1, 'B000005', 10, '2021-07-14'),
-('T-BM-21071400002', 5, 1, 'B000006', 100, '2021-07-14'),
-('T-BM-21071400003', 1, 1, 'B000007', 10, '2021-07-14'),
-('T-BM-21071400004', 6, 1, 'B000008', 500, '2021-07-14'),
-('T-BM-21071500001', 6, 1, 'B000008', 6, '2021-07-15'),
-('T-BM-21071500002', 5, 1, 'B000007', 12, '2021-07-15'),
-('T-BM-21071500003', 5, 1, 'B000006', 10, '2021-07-15');
+('T-BM-21072200001', 1, 1, 'B000004', 3, '2021-07-22'),
+('T-BM-21072200003', 2, 1, 'B000005', 3, '2021-07-22'),
+('T-BM-21072200004', 1, 1, 'B000006', 4, '2021-07-22'),
+('T-BM-21072200005', 1, 1, 'B000008', 2, '2021-07-22'),
+('T-BM-21072200006', 1, 1, 'B000009', 4, '2021-07-22'),
+('T-BM-21080800001', 3, 1, 'B000006', 2, '2021-08-08'),
+('T-BM-21080900001', 2, 1, 'B000007', 3, '2021-08-09'),
+('T-BM-21081200001', 1, 1, 'B000006', 2, '2021-08-12'),
+('T-BM-21081200002', 1, 1, 'B000002', 4, '2021-08-12'),
+('T-BM-21081300001', 1, 1, 'B000004', 2, '2021-08-13');
 
 --
 -- Trigger `barang_masuk`
@@ -148,16 +153,17 @@ CREATE TABLE `jenis` (
 --
 
 INSERT INTO `jenis` (`id_jenis`, `nama_jenis`) VALUES
-(1, 'Snack'),
-(2, 'Minuman'),
-(3, 'Laptop'),
-(4, 'Handphone'),
-(5, 'Sepeda Motor'),
-(6, 'Mobil'),
-(7, 'Perangkat Komputer'),
-(8, 'Sembako'),
-(9, 'Rokok'),
-(10, 'Peralatan');
+(1, 'Kursi'),
+(2, 'Meja'),
+(3, 'Almari Pakaian'),
+(4, 'Almari Penyimpanan'),
+(5, 'Almari Sekat Ruangan'),
+(6, 'Meja Rias'),
+(7, 'Dipan'),
+(8, 'Sekat Ruangan'),
+(9, 'Mimbar'),
+(10, 'Meja Makan'),
+(11, 'Set Kursi');
 
 -- --------------------------------------------------------
 
@@ -176,11 +182,7 @@ CREATE TABLE `satuan` (
 
 INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
 (1, 'Unit'),
-(2, 'Pack'),
-(3, 'Kursi'),
-(4, 'Karung'),
-(5, 'Bungkus'),
-(6, 'Kaleng');
+(2, 'Set');
 
 -- --------------------------------------------------------
 
@@ -200,12 +202,9 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `no_telp`, `alamat`) VALUES
-(1, 'Ahmad Hasanudin', '085688772971', 'Kec. Cigudeg, Bogor - Jawa Barat'),
-(2, 'Asep Salahudin', '081341879246', 'Kec. Ciampea, Bogor - Jawa Barat'),
-(3, 'Filo Lial', '087728164328', 'Kec. Ciomas, Bogor - Jawa Barat'),
-(4, 'Malik Ahmad', '08213167121', 'Pasir Koja, Bandung - Jawa Barat'),
-(5, 'Syamsidar', '08625371234', 'Sukapura, Bandung - Jawa Barat'),
-(6, 'Sudirman', '08213172389', 'Tanjung Priok - Jakarta Utara');
+(1, 'Djoko Sutrisno', '085688772971', 'Jelok rt 02 rw 03, Kiringan, Boyolali'),
+(2, 'Triyono', '081341879246', 'Pandeyan rt01 rw 02, Kiringan , Boyolali'),
+(3, 'Agus', '087728164328', 'Winong Baru rt03 rw01, Boyolali');
 
 -- --------------------------------------------------------
 
@@ -231,12 +230,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `email`, `no_telp`, `role`, `password`, `created_at`, `foto`, `is_active`) VALUES
-(1, 'Adminisitrator', 'admin', 'admin@admin.com', '025123456789', 'admin', '$2y$10$wMgi9s3FEDEPEU6dEmbp8eAAEBUXIXUy3np3ND2Oih.MOY.q/Kpoy', 1568689561, 'user.png', 1),
-(7, 'Arfan ID', 'arfandotid', 'arfandotid@gmail.com', '081221528805', 'gudang', '$2y$10$5es8WhFQj8xCmrhDtH86Fu71j97og9f8aR4T22soa7716kAusmaeK', 1568691611, 'user.png', 1),
+(1, 'Adminisitrator', 'admin', 'admin@admin.com', '025123456789', 'admin', '$2y$10$wMgi9s3FEDEPEU6dEmbp8eAAEBUXIXUy3np3ND2Oih.MOY.q/Kpoy', 1568689561, '5761763b7ada0ac585c1b6fe00e95bc9.jpg', 1),
+(7, 'Arfan ID', 'arfandotid', 'arfandotid@gmail.com', '081221528805', 'gudang', '$2y$10$5es8WhFQj8xCmrhDtH86Fu71j97og9f8aR4T22soa7716kAusmaeK', 1568691611, 'user.png', 0),
 (8, 'Muhammad Ghifari Arfananda', 'mghifariarfan', 'mghifariarfan@gmail.com', '085697442673', 'gudang', '$2y$10$5SGUIbRyEXH7JslhtEegEOpp6cvxtK6X.qdiQ1eZR7nd0RZjjx3qe', 1568691629, 'user.png', 1),
 (13, 'Arfan Kashilukato', 'arfankashilukato', 'arfankashilukato@gmail.com', '081623123181', 'gudang', '$2y$10$/QpTunAD9alBV5NSRJ7ytupS2ibUrbmS3ia3u5B26H6f3mCjOD92W', 1569192547, 'user.png', 1),
-(14, 'Waskita', 'waskita', 'waskita@gmail.com', '08772139123', 'gudang', '$2y$10$At9hGy8bUzU5aK4dWEtW2uwSOyNuvu2lTqDFGLmr.vpqo1.Pq2BWq', 1626268659, 'user.png', 0),
-(15, 'Mujiono', 'mujiono', 'mujiono@gmail.com', '081237213899', 'gudang', '$2y$10$AcfAQDU4i4f0.5aGqrDLBOpdFKawg2trjRizQbNBQvDamVN0cwic6', 1626268700, 'user.png', 0);
+(16, 'irwansyah', 'irwansyah', 'fsffjosf@gmail.com', '0812262', 'gudang', '$2y$10$2onlPPmnDlFs6plT0M/QyOU7B9zKwqDV5m7oWhanj31zUXF8Sj76O', 1626770346, 'user.png', 1),
+(17, 'Fauzi Irwansyah', 'fauziii', 'irwansyahozi2000@gmail.com', '081226205161', 'gudang', '$2y$10$L7.ptC8VUaVPFzotBYQmD.jaxoi3zc5GqrgC5CAejFLm4lMoXURpq', 1628749648, '84fc40bec00c17096858a324f4c20255.jpg', 1);
 
 --
 -- Indexes for dumped tables
@@ -298,25 +297,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `jenis`
 --
 ALTER TABLE `jenis`
-  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `satuan`
 --
 ALTER TABLE `satuan`
-  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

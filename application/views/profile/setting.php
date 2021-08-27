@@ -68,7 +68,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-phone"></i></span>
                             </div>
-                            <input value="<?= set_value('no_telp', $user['no_telp']); ?>" name="no_telp" id="no_telp" type="text" class="form-control" placeholder="Nomor Telepon...">
+                            <input value="<?= set_value('no_telp', $user['no_telp']); ?>" name="no_telp" id="no_telp" type="tel" pattern="[0-9]{12}" class="form-control" placeholder="Nomor Telepon...">
                         </div>
                         <?= form_error('no_telp', '<small class="text-danger">', '</small>'); ?>
                     </div>
