@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Agu 2021 pada 13.06
--- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.3.3
+-- Waktu pembuatan: 27 Agu 2021 pada 07.27
+-- Versi server: 10.4.20-MariaDB
+-- Versi PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -69,6 +68,7 @@ CREATE TABLE `barang_keluar` (
   `tanggal_keluar` date NOT NULL,
   `nama_pembeli` varchar(250) NOT NULL,
   `alamat_pembeli` varchar(250) NOT NULL,
+  `tanggal_sampai` date DEFAULT NULL,
   `nama_barang` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -76,19 +76,19 @@ CREATE TABLE `barang_keluar` (
 -- Dumping data untuk tabel `barang_keluar`
 --
 
-INSERT INTO `barang_keluar` (`id_barang_keluar`, `user_id`, `barang_id`, `jumlah_keluar`, `tanggal_keluar`, `nama_pembeli`, `alamat_pembeli`, `nama_barang`) VALUES
-('T-BK-21072200001', 1, 'B000004', 1, '2021-07-22', 'Fandi Ahmad', 'Sapiyan, Boyolali, Jawa Tengah', ''),
-('T-BK-21072200002', 1, 'B000006', 1, '2021-07-22', 'Triatmojo', 'Mojosongo, Boyolali', ''),
-('T-BK-21072200003', 1, 'B000006', 2, '2021-07-22', 'Budi Sudarsono', 'Perum.Galaxy Permai no.22', ''),
-('T-BK-21072200004', 1, 'B000009', 3, '2021-07-22', 'Sholeh Prihantara', 'Gombang, Sawit, Boyolali', ''),
-('T-BK-21072200005', 1, 'B000005', 3, '2021-07-23', 'Somat', 'Boyolali', ''),
-('T-BK-21072200006', 1, 'B000013', 2, '2021-07-22', 'Alpa', 'Boyolali', ''),
-('T-BK-21072300001', 1, 'B000005', 2, '2021-07-23', 'ali', 'boyolali', ''),
-('T-BK-21080900001', 1, 'B000007', 1, '2021-08-09', 'Budi S', 'Balikpapan', ''),
-('T-BK-21081000001', 1, 'B000007', 1, '2021-08-10', 'supeno', 'boyolali', ''),
-('T-BK-21081200001', 1, 'B000002', 1, '2021-08-12', 'gust', 'Kediri', ''),
-('T-BK-21081200002', 1, 'B000002', 2, '2021-08-12', 'agus', 'boyolali', ''),
-('T-BK-21081300001', 1, 'B000004', 2, '2021-08-13', 'Fauzi', 'boyolali', '');
+INSERT INTO `barang_keluar` (`id_barang_keluar`, `user_id`, `barang_id`, `jumlah_keluar`, `tanggal_keluar`, `nama_pembeli`, `alamat_pembeli`, `tanggal_sampai`, `nama_barang`) VALUES
+('T-BK-21072200001', 1, 'B000004', 1, '2021-07-22', 'Fandi Ahmad', 'Sapiyan, Boyolali, Jawa Tengah', '2021-07-28', ''),
+('T-BK-21072200002', 1, 'B000006', 1, '2021-07-22', 'Triatmojo', 'Mojosongo, Boyolali', NULL, ''),
+('T-BK-21072200003', 1, 'B000006', 2, '2021-07-22', 'Budi Sudarsono', 'Perum.Galaxy Permai no.22', NULL, ''),
+('T-BK-21072200004', 1, 'B000009', 3, '2021-07-22', 'Sholeh Prihantara', 'Gombang, Sawit, Boyolali', NULL, ''),
+('T-BK-21072200005', 1, 'B000005', 3, '2021-07-23', 'Somat', 'Boyolali', NULL, ''),
+('T-BK-21072200006', 1, 'B000013', 2, '2021-07-22', 'Alpa', 'Boyolali', NULL, ''),
+('T-BK-21072300001', 1, 'B000005', 2, '2021-07-23', 'ali', 'boyolali', NULL, ''),
+('T-BK-21080900001', 1, 'B000007', 1, '2021-08-09', 'Budi S', 'Balikpapan', NULL, ''),
+('T-BK-21081000001', 1, 'B000007', 1, '2021-08-10', 'supeno', 'boyolali', NULL, ''),
+('T-BK-21081200001', 1, 'B000002', 1, '2021-08-12', 'gust', 'Kediri', NULL, ''),
+('T-BK-21081200002', 1, 'B000002', 2, '2021-08-12', 'agus', 'boyolali', '2021-08-30', ''),
+('T-BK-21081300001', 1, 'B000004', 2, '2021-08-27', 'Fauzi', 'boyolali', '2021-08-31', '');
 
 --
 -- Trigger `barang_keluar`
@@ -230,7 +230,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `email`, `no_telp`, `role`, `password`, `created_at`, `foto`, `is_active`) VALUES
-(1, 'Adminisitrator', 'admin', 'admin@admin.com', '025123456789', 'admin', '$2y$10$wMgi9s3FEDEPEU6dEmbp8eAAEBUXIXUy3np3ND2Oih.MOY.q/Kpoy', 1568689561, '5761763b7ada0ac585c1b6fe00e95bc9.jpg', 1),
+(1, 'Adminisitrator', 'admin', 'admin@admin.com', '025123456789', 'admin', '$2y$10$wMgi9s3FEDEPEU6dEmbp8eAAEBUXIXUy3np3ND2Oih.MOY.q/Kpoy', 1568689561, 'user.png', 1),
 (7, 'Arfan ID', 'arfandotid', 'arfandotid@gmail.com', '081221528805', 'gudang', '$2y$10$5es8WhFQj8xCmrhDtH86Fu71j97og9f8aR4T22soa7716kAusmaeK', 1568691611, 'user.png', 0),
 (8, 'Muhammad Ghifari Arfananda', 'mghifariarfan', 'mghifariarfan@gmail.com', '085697442673', 'gudang', '$2y$10$5SGUIbRyEXH7JslhtEegEOpp6cvxtK6X.qdiQ1eZR7nd0RZjjx3qe', 1568691629, 'user.png', 1),
 (13, 'Arfan Kashilukato', 'arfankashilukato', 'arfankashilukato@gmail.com', '081623123181', 'gudang', '$2y$10$/QpTunAD9alBV5NSRJ7ytupS2ibUrbmS3ia3u5B26H6f3mCjOD92W', 1569192547, 'user.png', 1),
@@ -309,13 +309,13 @@ ALTER TABLE `satuan`
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
