@@ -93,22 +93,24 @@ class Laporan extends CI_Controller
             $pdf->Cell(195, 7, 'Hafidh Arifianto', 0, 1, 'R');
 
             else :
-            $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
-            $pdf->Cell(25, 7, 'Tgl Keluar', 1, 0, 'C');
+            $pdf->Cell(7, 7, 'No', 1, 0, 'C');
+            $pdf->Cell(20, 7, 'Tgl Keluar', 1, 0, 'C');
             $pdf->Cell(35, 7, 'ID Transaksi', 1, 0, 'C');
-            $pdf->Cell(60, 7, 'Nama Barang', 1, 0, 'C');
-            $pdf->Cell(30, 7, 'Jumlah Keluar', 1, 0, 'C');
+            $pdf->Cell(55, 7, 'Nama Barang', 1, 0, 'C');
+            $pdf->Cell(25, 7, 'Jml Keluar', 1, 0, 'C');
+            $pdf->Cell(20, 7, 'Tgl Sampai', 1, 0, 'C');
             $pdf->Cell(35, 7, 'Total Keluar', 1, 0, 'C');
             $pdf->Ln();
 
             $no = 1;
             foreach ($data as $d) {
                 $pdf->SetFont('Arial', '', 10);
-                $pdf->Cell(10, 7, $no++ . '.', 1, 0, 'C');
-                $pdf->Cell(25, 7, $d['tanggal_keluar'], 1, 0, 'C');
+                $pdf->Cell(7, 7, $no++ . '.', 1, 0, 'C');
+                $pdf->Cell(20, 7, $d['tanggal_keluar'], 1, 0, 'C');
                 $pdf->Cell(35, 7, $d['id_barang_keluar'], 1, 0, 'C');
-                $pdf->Cell(60, 7, $d['nama_barang'], 1, 0, 'L');
-                $pdf->Cell(30, 7, $d['jumlah_keluar'] . ' ' . $d['nama_satuan'], 1, 0, 'C');
+                $pdf->Cell(55, 7, $d['nama_barang'], 1, 0, 'L');
+                $pdf->Cell(25, 7, $d['jumlah_keluar'] . ' ' . $d['nama_satuan'], 1, 0, 'C');
+                $pdf->Cell(20, 7, $d['tanggal_sampai'], 1, 0, 'C');
 
                 foreach ($barang as $b) :
                     if($b['id_barang'] == $d['barang_id']){
@@ -124,7 +126,7 @@ class Laporan extends CI_Controller
 
                 $pdf->Ln();
             }
-            $pdf->Cell(160, 7, 'Jumlah Total Keluar :', 1, 0, 'C');
+            $pdf->Cell(162, 7, 'Jumlah Total Keluar :', 1, 0, 'C');
             foreach ($jml as $jml) {
                 $pdf->Cell(35, 7, "Rp " . number_format($jml->jumlah, 0, ".", "."), 1, 0, 'C');
             }
@@ -133,7 +135,7 @@ class Laporan extends CI_Controller
             $pdf->Ln();
             $pdf->Ln();
             $pdf->Ln();
-            $pdf->Cell(195, 7, 'Hafidh Arifianto', 0, 1, 'R');
+            $pdf->Cell(197, 7, 'Hafidh Arifianto', 0, 1, 'R');
 
         endif;
 

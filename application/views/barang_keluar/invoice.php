@@ -130,7 +130,8 @@
 
 								<td>
 									No. Transaksi #: <?= $barang_keluar['id_barang_keluar']; ?><br />
-									Tanggal Transaksi: <?= $barang_keluar['tanggal_keluar']; ?>
+									Tanggal Transaksi: <?= $barang_keluar['tanggal_keluar']; ?><br />
+									Tanggal Sampai: <?= $barang_keluar['tanggal_sampai']; ?>
 								</td>
 							</tr>
 						</table>

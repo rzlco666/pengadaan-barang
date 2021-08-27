@@ -31,6 +31,7 @@
                     <th>Total Harga</th>
                     <th>Nama Pembeli</th>
                     <th>Alamat Pembeli</th>
+                    <th>Tanggal Sampai</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -51,6 +52,7 @@
                             <?php endforeach; ?></td>
                             <td><?= $bk['nama_pembeli']; ?></td>
                             <td><?= $bk['alamat_pembeli']; ?></td>
+                            <td><?= $bk['tanggal_sampai']; ?></td>
                             <td>
                                 <a href="<?= base_url('barangkeluar/edit/'). $bk['id_barang_keluar']  ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
                                 <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('barangkeluar/delete/') . $bk['id_barang_keluar'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>

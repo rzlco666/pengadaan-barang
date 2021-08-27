@@ -81,7 +81,7 @@
                         <?= form_error('nama_pembeli', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
-                    <div class="row form-group">
+                <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="nama_pembeli">Alamat Pembeli</label>
                     <div class="col-md-5">
                         <div class="input-group">
@@ -90,6 +90,13 @@
                             </div>
                         </div>
                         <?= form_error('alamat_pembeli', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="tanggal_sampai">Tanggal Sampai</label>
+                    <div class="col-md-4">
+                        <input value="<?= set_value('tanggal_sampai', date('Y-m-d')); ?>" name="tanggal_sampai" id="tanggal_sampai" type="date" class="form-control" placeholder="Tanggal Sampai...">
+                        <?= form_error('tanggal_sampai', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="row form-group">
